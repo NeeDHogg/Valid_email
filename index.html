@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <title>Valid email</title>
+  </head>
+  <body>
+    <div>
+      <form action="#" id="form">
+        <div class="input-box">
+          <!-- input where we write our email  -->
+          <input
+            class="email"
+            type="email"
+            name=""
+            placeholder="Enter your email"
+            onkeydown="validation()"
+          />
+          <!-- says to us valid or not -->
+          <span class="text"></span>
+        </div>
+      </form>
+    </div>
+    <script>
+      const validation = function () {
+        // we need form, email, text to add and remove class valid/invalid
+        const form = document.getElementById("form");
+        let email = document.querySelector(".email");
+        const text = document.querySelector(".text");
+        const mailFormat = /^[^ ]+@[^ ]+\.[a-z]{2,3}$/;
+
+        console.log(email.value);
+
+        if (email.value.match(mailFormat)) {
+          form.classList.add("valid");
+          form.classList.remove("invalid");
+          email.style.border = "1px solid #00ff00";
+          text.textContent = "Your Email Address is valid!";
+          text.style.color = "#00ff00";
+        } else {
+          form.classList.remove("valid");
+          form.classList.add("invalid");
+          email.style.border = "1px solid #ff0000";
+          text.textContent = "Your Email Address is not valid!";
+          text.style.color = "#ff0000";
+        }
+        if (email.value.length <= 1) {
+          form.classList.remove("valid");
+          form.classList.remove("invalid");
+          email.style.border = "1px solid #ff0000";
+          text.textContent = "You need to fill the field!!";
+          text.style.color = "#ff0000";
+        }
+      };
+    </script>
+  </body>
+</html>
